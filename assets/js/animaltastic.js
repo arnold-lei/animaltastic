@@ -1,6 +1,6 @@
 $(document).ready(function(){
   var gifs;
-  var animals = ['cats'];
+  var animals = [];
   //html divs
   var div = $('.gifs');
   var buttons = $('.buttons');
@@ -14,6 +14,7 @@ $(document).ready(function(){
       var newButton = $('<button>');
       newButton.attr('class', 'btn btn-primary animalSearch').val(animals[i]).text(animals[i]);
       buttons.append(newButton);
+      buttonClick();
     }
   }
 
@@ -48,18 +49,18 @@ $(document).ready(function(){
       }
     })
   }
-
+  createButtons();
+  submit();
   //button click handler for the animal buttons 
   function buttonClick(){
-    animalBtn.on('click' ,function(){
+    $('.animalSearch').on('click', function(){
       search(this.value);
       console.log("this button is working");
     })
   }
 
-  buttonClick();
-  createButtons();
-  submit();
+  
 
+  // buttonClick();
 
 }); //end of document.ready 
