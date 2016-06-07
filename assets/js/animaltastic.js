@@ -1,13 +1,14 @@
 $(document).ready(function(){
   var gifs;
-  var animals = [];
+  var animals = ['cats'];
   //html divs
   var div = $('.gifs');
   var buttons = $('.buttons');
-  var animalSearch = $('.animalSearch');
+  var animalBtn = $('.animalSearch');
   var submitBtn = $('.submit');
   var searchInput = $('.gifSearch');
 
+  //creates buttons from the animals array
   function createButtons(){
     for (var i = 0; i < animals.length; i+=1){
       var newButton = $('<button>');
@@ -16,6 +17,7 @@ $(document).ready(function(){
     }
   }
 
+  //pushes the user input into the animals array 
   function submit(){
     submitBtn.on('click', function(){
       if(searchInput.val() && animals.indexOf(searchInput.val()) == -1){
@@ -29,6 +31,7 @@ $(document).ready(function(){
     })
   }
 
+  //ajax call to giphy to get the searched gifs and adds it to the document
   function search(term){
     $.ajax({
       url:'http://api.giphy.com/v1/gifs/search?q='+term+'&api_key=dc6zaTOxFJmzC',
@@ -46,13 +49,17 @@ $(document).ready(function(){
     })
   }
 
+  //button click handler for the animal buttons 
   function buttonClick(){
-    animalSearch.on('click', function(){
+    animalBtn.on('click' ,function(){
       search(this.value);
+      console.log("this button is working");
     })
   }
 
+  buttonClick();
   createButtons();
   submit();
-  buttonClick();
-}); 
+
+
+}); //end of document.ready 
