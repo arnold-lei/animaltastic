@@ -1,21 +1,31 @@
 $(document).ready(function(){
-  var gifs; 
-  var animals = ['cats', 'dogs', 'racoons'];
+  var gifs;
+  var animals = [];
   //html divs
   var div = $('.gifs');
   var buttons = $('.buttons');
+  var animalSearch = $('.animalSearch');
+  var submitBtn = $('.submit');
+  var searchInput = $('.gifSearch');
 
   function createButtons(){
-    for (var i = 0; i < animals.length; i++){
+    for (var i = 0; i < animals.length; i+=1){
       var newButton = $('<button>');
       newButton.attr('class', 'btn btn-primary animalSearch').val(animals[i]).text(animals[i]);
-      console.log(animals[i]);
       buttons.append(newButton);
     }
   }
-  function buttonClick(){
-    $('.animalSearch').on('click', function(){
-      search(this.value)
+
+  function submit(){
+    submitBtn.on('click', function(){
+      if(searchInput.val() && animals.indexOf(searchInput.val()) == -1){
+        animals.push(searchInput.val());
+        buttons.empty();
+        createButtons();
+       }else{
+        console.log('Do not repeat buttons');
+      }
+      return false;
     })
   }
 
@@ -36,7 +46,13 @@ $(document).ready(function(){
     })
   }
 
-  createButtons();
-  buttonClick();
+  function buttonClick(){
+    animalSearch.on('click', function(){
+      search(this.value);
+    })
+  }
 
+  createButtons();
+  submit();
+  buttonClick();
 }); 
