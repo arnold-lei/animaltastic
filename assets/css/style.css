@@ -1,3 +1,22 @@
 .form-inline{
   margin-bottom: 2em;
 }
+
+pre{
+  display:inline;
+}
+
+.gifDiv{
+  display: inline-block;
+  width:auto;
+  margin:1em 1em 1em 0;
+}
+
+.embed{
+  background-color: #F5F5F5;
+  border-style: solid;
+  border-width:1px;
+  border-color: #CCCCCC;
+  border-radius: 5px;
+  padding:.5em;
+} 

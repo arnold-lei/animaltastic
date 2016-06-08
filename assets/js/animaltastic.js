@@ -7,6 +7,7 @@ $(document).ready(function(){
   var animalBtn = $('.animalSearch');
   var submitBtn = $('.submit');
   var searchInput = $('.gifSearch');
+  var clear = $('.clear');
 
   //creates buttons from the animals array
   function createButtons(){
@@ -32,6 +33,13 @@ $(document).ready(function(){
     })
   }
 
+  function clearGifs(){
+    clear.on('click', function(){
+      div.empty();
+      return false;
+    })
+  }
+
   //ajax call to giphy to get the searched gifs and adds it to the document
   function search(term){
     $.ajax({
@@ -40,17 +48,19 @@ $(document).ready(function(){
     }).done(function(gifObj){
       div.empty();
       for (var i = 0; i < gifObj.data.length; i++){
+        var gifDiv = $('<div>');
         var newImg = $('<img>');
-        var slug = $('<p>');
-        slug.text(gifObj.data[i].slug)
+        var pre = $('<p>');
+        pre.addClass('embed').text(gifObj.data[i].embed_url);
         newImg.attr('src', gifObj.data[i].images.fixed_height.url);
-        div.append(newImg);
-        console.log(gifObj)
+        gifDiv.addClass('gifDiv').append(newImg, pre);
+        div.append(gifDiv);
       }
     })
   }
   createButtons();
   submit();
+  clearGifs();
   //button click handler for the animal buttons 
   function buttonClick(){
     $('.animalSearch').on('click', function(){
@@ -58,8 +68,6 @@ $(document).ready(function(){
       console.log("this button is working");
     })
   }
-
-  
 
   // buttonClick();
 
