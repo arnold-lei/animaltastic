@@ -15,12 +15,14 @@ $(document).ready(function(){
       var newButton = $('<button>');
       var closeButton = $('<button>');
       var x = $('<i class="fa fa-times" aria-hidden="true"></i>');
-      closeButton.attr('class', 'btn btn-primary').append(x)
+      closeButton.attr('class', 'btn btn-primary delete').val(animals[i]).append(x)
       newButton.attr('class', 'btn btn-primary animalSearch').val(animals[i]).text(animals[i]);
       buttons.append(newButton).append(closeButton);
+      // closeButton();
       buttonClick();
     }
   }
+
 
   //pushes the user input into the animals array 
   function submit(){
@@ -65,14 +67,28 @@ $(document).ready(function(){
   createButtons();
   submit();
   clearGifs();
+
   //button click handler for the animal buttons 
   function buttonClick(){
     $('.animalSearch').on('click', function(){
       search(this.value);
       console.log("this button is working");
+      closeButton();
     })
   }
 
+  function closeButton(){
+    $('.delete').on('click', function(){
+      var btnVal; 
+      btnVal = this.value;
+      console.log(btnVal);
+      var btn = ($('button').filter(function(){
+         return $(this).val() == btnVal;
+      }));
+      btn.html('');
+    })
+  }
   // buttonClick();
+  closeButton();
 
 }); //end of document.ready 
