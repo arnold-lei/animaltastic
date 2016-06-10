@@ -1,3 +1,10 @@
+body{
+  background-image: url('restaurant_icons.png');
+  font-family: 'Raleway', sans-serif;
+}
+.h1{
+  font-weight:bold;
+}
 .form-inline{
   margin-bottom: 2em;
 }
@@ -24,3 +31,4 @@ pre{
 .delete{
   margin-right: 1em;
 }
+
