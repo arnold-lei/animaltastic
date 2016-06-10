@@ -13,8 +13,11 @@ $(document).ready(function(){
   function createButtons(){
     for (var i = 0; i < animals.length; i+=1){
       var newButton = $('<button>');
+      var closeButton = $('<button>');
+      var x = $('<i class="fa fa-times" aria-hidden="true"></i>');
+      closeButton.attr('class', 'btn btn-primary').append(x)
       newButton.attr('class', 'btn btn-primary animalSearch').val(animals[i]).text(animals[i]);
-      buttons.append(newButton);
+      buttons.append(newButton).append(closeButton);
       buttonClick();
     }
   }
@@ -58,6 +61,7 @@ $(document).ready(function(){
       }
     })
   }
+
   createButtons();
   submit();
   clearGifs();
