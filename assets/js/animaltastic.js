@@ -85,7 +85,8 @@ $(document).ready(function(){
       var btn = ($('button').filter(function(){
          return $(this).val() == btnVal;
       }));
-      btn.html('');
+      btn.remove();
+      animals.splice(animals.indexOf(btnVal), 1);
     })
   }
   // buttonClick();
